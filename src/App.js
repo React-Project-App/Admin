@@ -4,7 +4,7 @@ import Login from './Pages/Login/Login';
 import './CssFiles/Style.css'
 import 'bootstrap/dist/css/bootstrap.min.css'
 import 'bootstrap/dist/js/bootstrap.min.js'
-import AddProduct from './Pages/AddProduct.jsx/AddProduct';
+import AddProducts from './Pages/AddProduct.jsx/AddProducts';
 import AsideBar from './Component/AsideBar';
 import NavBar from './Component/NavBar/NavBar';
 import Dashboard from './Pages/Dashboard/Dashboard';
@@ -23,7 +23,7 @@ function App() {
     <AsideBar/>
    <Routes>
      <Route path='/Login' element={<Login/>}/>
-     <Route path='/AddProduct' element={<AddProduct/>}/>
+     <Route path='/AddProduct' element={<AddProducts/>}/>
      <Route path='/Dashboard' element={<Dashboard/>}/>
      <Route path='/ListProduct' element={<ListProduct/>}/>
    </Routes>
