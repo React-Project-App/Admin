@@ -1,6 +1,7 @@
-import { collection, deleteDoc, doc, onSnapshot } from "firebase/firestore";
+import { addDoc, collection, deleteDoc, doc, onSnapshot } from "firebase/firestore";
 import { toast } from "react-toastify";
-import { DELETE_PRODUCT, LIST_PRODUCT } from "../ActionConst/ActionConst";
+
+import { ADD_PRODUCT, DELETE_PRODUCT, LIST_PRODUCT } from "../ActionConst/ActionConst";
 import { db } from "../FirebaseConfig/FirebaseConfig";
 
 
@@ -25,3 +26,15 @@ try {
 }
         
 }
+
+export const AddProduct= (product)=>async (dispatch)=>{
+    try {
+        const Product =addDoc(collection(db,"Product"),product)
+      
+        dispatch({type:ADD_PRODUCT});
+    } catch (error) {
+        toast.error("Error in add product")
+    }
+        
+}
+
