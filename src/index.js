@@ -1,6 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
-import { createStoreHook, Provider } from 'react-redux';
+import {  Provider } from 'react-redux';
 import { applyMiddleware, compose, createStore } from 'redux';
 import thunk from "redux-thunk";
 

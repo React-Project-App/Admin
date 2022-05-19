@@ -2,3 +2,5 @@ export const LIST_PRODUCT="LIST_PRODUCT";
 export const DELETE_PRODUCT="DELETE_PRODUCT"; 
 export const LIST_USERS="LIST_USERS"; 
 export const DELETE_USER="DELETE_USER"
+export const CATEGORIE="CATEGORIE";
+export const ADD_PRODUCT="ADD_PRODUCT";
