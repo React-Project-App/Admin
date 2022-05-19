@@ -32,8 +32,9 @@ export const AddProduct= (product)=>async (dispatch)=>{
         const Product =addDoc(collection(db,"Product"),product)
       
         dispatch({type:ADD_PRODUCT});
-    } catch (error) {
-        toast.error("Error in add product")
+        toast.success("Product has been added")
+
+    } catch  {
     }
         
 }

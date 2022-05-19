@@ -1,12 +1,13 @@
 import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { GetCategories } from "../../Actions/Categorie";
+import { GetCategories  } from "../../Actions/Categorie";
 import { ref, uploadBytesResumable, getDownloadURL, uploadBytes } from "firebase/storage";
 import { db, storage } from "../../FirebaseConfig/FirebaseConfig";
 import { toast } from "react-toastify";
-import { async } from "@firebase/util";
+import { AddProduct } from "../../Actions/ListProduct";
 
-function AddProduct() {
+
+function AddProducts() {
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -23,6 +24,7 @@ function AddProduct() {
   const [LocalImages, setLocalImages] = useState([]);
   const [Category, setCategory] = useState();
   const [files, setFiles] = useState([]);
+  const [Featured, setFeatured] = useState(false);
 
   //  for (let index = 0; index < e.target.files.length; index++) {
   //     const render =new FileReader();
@@ -100,7 +102,7 @@ function AddProduct() {
     // }).catch((err)=>toast.error("There is an error"))
   };
 
-  const AddProduct = () => {
+  const AddSingleProduct = () => {
     if (
       !Title ||
       !Prevprice ||
@@ -108,6 +110,8 @@ function AddProduct() {
       !Description ||
       !Category ||
       !Images
+      || Images.length <3
+      
     ) {
       toast.warning("Please fill all the fields");
     } else {
@@ -117,8 +121,13 @@ function AddProduct() {
         Curprice,
         Description,
         Category,
-        Images,
+        Photo: Images[0],
+        MorePhoto: Images,
+        Featured,
       };
+
+      console.log(product);
+      dispatch(AddProduct(product));
     }
   };
 
@@ -218,17 +227,24 @@ function AddProduct() {
               id="inputState "
               className="form-select w-50 mb-3"
               required="required"
+              onChange={(e) => setCategory( e.target.value)}
+              
             >
               <option value="Choose...">Choose...</option>
 
-              {Categories.map((categorie) => {
+              {Categories.map(({CatName}) => {
                 return (
-                  <option onChange={(e) => console.log(e)}>
-                    {categorie.CatName}
+                  <option value={CatName} >
+                    {CatName}
                   </option>
                 );
               })}
             </select>
+            <div class="form-check form-switch d-flex gap-5">
+            <p  className="fw-bold ">Featured</p>
+
+          <input class="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckChecked"   onChange={(e)=>setFeatured(e.target.checked)} />
+        </div>
           </div>
           {/* <div className="col-lg-10 col-sm-12 p-3 mb-2 ps-2">
           <div className="form-check">
@@ -238,11 +254,12 @@ function AddProduct() {
             </label>
           </div>
         </div> */}
+        
           <div className="col-lg-10 col-sm-12">
             <button
-              type="submit"
+              type="button"
               className="btn btn-primary mb-3 adp shadow-none"
-              onClick={()=>AddProduct()}
+              onClick={()=>AddSingleProduct()}
             > 
               Add Product
             </button>
@@ -253,4 +270,4 @@ function AddProduct() {
   );
 }
 
-export default AddProduct;
+export default AddProducts;
