@@ -1,7 +1,7 @@
-import { addDoc, collection, deleteDoc, doc, onSnapshot } from "firebase/firestore";
+import { addDoc, collection, deleteDoc, doc, getDoc, onSnapshot } from "firebase/firestore";
 import { toast } from "react-toastify";
 
-import { ADD_PRODUCT, DELETE_PRODUCT, LIST_PRODUCT } from "../ActionConst/ActionConst";
+import { ADD_PRODUCT, DELETE_PRODUCT, GET_PRODUCT, LIST_PRODUCT } from "../ActionConst/ActionConst";
 import { db } from "../FirebaseConfig/FirebaseConfig";
 
 
@@ -25,6 +25,13 @@ try {
     console.log(error.message)
 }
         
+}
+export const GetProduct= (id)=>async (dispatch)=>{
+    
+    const  ProdRef=doc(db,"Product",id)
+    const ProdSnap=await getDoc(ProdRef)
+    
+        dispatch({type:GET_PRODUCT,payload:ProdSnap.data()});
 }
 
 export const AddProduct= (product)=>async (dispatch)=>{

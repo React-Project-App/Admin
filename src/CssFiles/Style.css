@@ -187,7 +187,9 @@ background-color: rgb(243, 243, 243) !important;
    margin-top: 15px;
 }
 
-
+.offcanvas-backdrop.show {
+    margin-top: 57px !important;
+}
 
 
 
