@@ -1,4 +1,4 @@
-import { ADD_PRODUCT, DELETE_PRODUCT, LIST_PRODUCT } from "../ActionConst/ActionConst";
+import { ADD_PRODUCT, DELETE_PRODUCT, GET_PRODUCT, LIST_PRODUCT } from "../ActionConst/ActionConst";
 
 
 export default function ListProduct(state = [], {type,payload}) {
@@ -8,9 +8,10 @@ export default function ListProduct(state = [], {type,payload}) {
             return Products;
         case DELETE_PRODUCT:
             return ;
-            case ADD_PRODUCT:
+        case ADD_PRODUCT:
             return ;
-            
+        case GET_PRODUCT:
+            return payload;
 
         default:
             return state;
