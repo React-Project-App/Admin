@@ -35,10 +35,10 @@ const products=useSelector(state=>state.ListProduct)
                         <td>{product.Title}</td>  
                         <td>{product.Price}</td> 
                         <td>{product.Categorie}</td>
-                        <td><a  class="del" onClick={_=>{
+                        <td><a  class="del Pointer" onClick={_=>{
                             dispatch(DeleteProduct(product.id))
                         }}>delete</a></td>
-                        <td><a  class="upd"
+                        <td><a  class="upd Pointer"
                         onClick={()=>{
                           navigate(`/updateproducts/${product.id}`)
                         }}

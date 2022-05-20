@@ -16,17 +16,16 @@ export const GetAllUsers= ()=>async (dispatch)=>{
 export const DeleteProduct= (id)=>async (dispatch)=>{
     try {
         const  userDoc=doc(db,"User",id)
-        const user1=await getDoc(userDoc)
-        const user=JSON.parse(user1.data().user)
-        console.log(user);
+        // const user1=await getDoc(userDoc)
+        // const user=JSON.parse(user1.data().user)
+        // console.log();
             await deleteDoc(userDoc)
-            deleteUser(user).then(() => {
-                toast.success("delete success")
-              }).catch((error) => {
-                console.log(error)
-              });
-            
-
+                 toast.success("delete success")
+            // deleteUser(user.uid).then(() => {
+           
+            //   }).catch((error) => {
+            //     console.log(error)
+            //   });
             dispatch({type:DELETE_USER});
     } catch (error) {
         console.log(error.message)
