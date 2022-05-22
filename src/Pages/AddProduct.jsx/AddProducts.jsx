@@ -5,6 +5,8 @@ import { ref, uploadBytesResumable, getDownloadURL, uploadBytes } from "firebase
 import { db, storage } from "../../FirebaseConfig/FirebaseConfig";
 import { toast } from "react-toastify";
 import { AddProduct } from "../../Actions/ListProduct";
+import axios, { Axios } from "axios";
+
 
 
 function AddProducts() {
@@ -25,83 +27,51 @@ function AddProducts() {
   const [Category, setCategory] = useState();
   const [files, setFiles] = useState([]);
   const [Featured, setFeatured] = useState(false);
+  const [Task, setTask] = useState([]);
 
-  //  for (let index = 0; index < e.target.files.length; index++) {
-  //     const render =new FileReader();
-  //     render.addEventListener("load",(e)=>{
-  //      let Image=e.target
-  //      setLocalImages((prev) =>[...prev,Image.result])
-  //     })
 
-  //     render.readAsDataURL(e.target.files[index]);
-  //   }
-
-  const handelFiles = (e) => {
-    if (e.target.files.length > 4 || LocalImages.length > 3) {
-      toast.error("You can't add more than 4 images");
-      return;
-    }
-    for (let index = 0; index < e.target.files.length; index++) {
-      const render = new FileReader();
-      render.addEventListener("load", (ee) => {
-        let Image = ee.target;
-        setLocalImages((prev) => [...prev, Image.result]);
-      });
-
-      render.readAsDataURL(e.target.files[index]);
-      setFiles((prev) => [...prev, e.target.files[index]]);
-    }
-  };
-  console.log(LocalImages);
 
   const UpoloadImges = (file) =>  {
-    console.log(files);
-    // const promises=[]
 
-    // files.map((file,index) => {
-      // console.log(index);
+    
+     const  formData=new FormData();
+     formData.append("file",file.target.files[0]);
+      formData.append("upload_preset","duvnigx5");
+     
+      axios.post("https://api.cloudinary.com/v1_1/dizlyig0d/image/upload",formData).then((res)=>{
 
-      // console.log(files[file]);
-      // return new Promise((resolve,reject)=>{
 
-        const fileref = ref(storage, "Products/", file.name);
+      setImages((prev)=>[...prev ,res.data.secure_url]);
+      toast.success("Image Uploaded");
+      })
 
-        const uploadTask = uploadBytesResumable(fileref, file);
-        uploadBytes(fileref, file).then((url) => {
 
-          console.log(url);
-          
-        }
-        )
-        // promises.push(uploadTask);
-         uploadTask.on(
+
+  };
+
+
+
+  const GetUrls = (uploadTask) => {
+
+      uploadTask.map(item=>{
+        item.on(
           "state_changed",
           (snapshot) => {},
           (error) => {
             toast.error("Error in uploading");
           },
              async (res) => {
-             await  getDownloadURL(uploadTask.snapshot.ref).then((url) => {
+             await  getDownloadURL(item.snapshot.ref).then((url) => {
               setImages((prev) => [...prev, url]);
+              // localStorage.setItem("Images", Images);
                 toast.success("Image Uploaded");
               console.log(url);
             });
           }
         );
-
-
-      // })
-      
-    // });
-
-    // Promise.all(promises).then(() => {
-
-
-    //   toast.success("Images Uploaded");
-
-    // }).catch((err)=>toast.error("There is an error"))
-  };
-
+      })
+ 
+  }
   const AddSingleProduct = () => {
     if (
       !Title ||
@@ -115,6 +85,8 @@ function AddProducts() {
     ) {
       toast.warning("Please fill all the fields");
     } else {
+
+      console.log(Images);
       const product = {
         Title,
         Prevprice,
@@ -198,9 +170,9 @@ function AddProducts() {
             <div className="mb-3">
               <input
                 onChange={(e) => {
-                    handelFiles(e);
+                    
                   
-                    UpoloadImges(e.target.files[0]);
+                    UpoloadImges(e);
                     
                   
                 }}
@@ -215,7 +187,7 @@ function AddProducts() {
               {/* Upload
               </button> */}
             </div>
-            {LocalImages.map((image) => {
+            {Images.map((image) => {
               return <img src={image} className="upload me-3" alt="" />;
             })}
           </div>
