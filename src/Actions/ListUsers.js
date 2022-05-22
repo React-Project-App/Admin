@@ -1,4 +1,5 @@
-import { collection, deleteDoc, doc, onSnapshot } from "firebase/firestore";
+import { deleteUser } from "firebase/auth";
+import { collection, deleteDoc, doc, getDoc, onSnapshot } from "firebase/firestore";
 import { toast } from "react-toastify";
 import { DELETE_USER, LIST_USERS } from "../ActionConst/ActionConst";
 import { db } from "../FirebaseConfig/FirebaseConfig";
@@ -15,9 +16,16 @@ export const GetAllUsers= ()=>async (dispatch)=>{
 export const DeleteProduct= (id)=>async (dispatch)=>{
     try {
         const  userDoc=doc(db,"User",id)
+        // const user1=await getDoc(userDoc)
+        // const user=JSON.parse(user1.data().user)
+        // console.log();
             await deleteDoc(userDoc)
-            toast.success("delete success")
-    
+                 toast.success("delete success")
+            // deleteUser(user.uid).then(() => {
+           
+            //   }).catch((error) => {
+            //     console.log(error)
+            //   });
             dispatch({type:DELETE_USER});
     } catch (error) {
         console.log(error.message)

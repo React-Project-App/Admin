@@ -187,8 +187,10 @@ function AddProducts() {
               {/* Upload
               </button> */}
             </div>
+
             {Images.map((image) => {
               return <img src={image} className="upload me-3" alt="" />;
+
             })}
           </div>
           <div className="col-lg-10 col-sm-12 mb-2">
@@ -212,7 +214,7 @@ function AddProducts() {
                 );
               })}
             </select>
-            <div class="form-check form-switch d-flex gap-5">
+            <div class="form-check form-switch d-flex gap-5  col-lg-5 col-sm-6 p-0">
             <p  className="fw-bold ">Featured</p>
 
           <input class="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckChecked"   onChange={(e)=>setFeatured(e.target.checked)} />

@@ -104,7 +104,9 @@ background-color: rgb(243, 243, 243) !important;
     font-size: 20px;
     font-weight: 600;
 }
-
+.Pointer{
+    cursor: pointer;
+}
 
 
 
@@ -187,7 +189,9 @@ background-color: rgb(243, 243, 243) !important;
    margin-top: 15px;
 }
 
-
+.offcanvas-backdrop.show {
+    margin-top: 57px !important;
+}
 
 
 

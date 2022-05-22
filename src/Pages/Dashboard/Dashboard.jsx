@@ -1,18 +1,21 @@
 import React, { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { GetAllProduct } from '../../Actions/ListProduct'
-import { DeleteProduct, GetAllUsers } from '../../Actions/ListUsers'
+import { DeleteProduct, DeleteUser, GetAllUsers } from '../../Actions/ListUsers'
 import {FaUserAlt} from 'react-icons/fa'
+import { GetOrders } from '../../Actions/TotalOrder'
 function Dashboard() {
     const dispatch=useDispatch()
     // dispatch(GetAllProduct())
     useEffect(_=>{
         dispatch(GetAllProduct())
         dispatch(GetAllUsers())
+       dispatch(GetOrders())
     },[])
     const products=useSelector(state=>state.ListProduct)
+    const Orders=useSelector(state=>state.Orders)
     const Users=useSelector(state=>state.ListUsers)
-    console.log(Users)
+    // console.log()
     
   return (
     Users.length>0?(
@@ -36,7 +39,7 @@ function Dashboard() {
         </div>
         <div class="col-8 text-start d-flex justify-content-center flex-column">
           <p>Total Orders</p>
-          <p class="nbr text-center">120</p>
+          <p class="nbr text-center">{Orders.length}</p>
         </div>
       </div>
       <div class="dsh col-lg-3 col-md-3 col-sm-7 row ">
@@ -68,8 +71,9 @@ function Dashboard() {
                     <td>{user.uid}</td>  
                     <td>{user.name}</td>  
                     <td>{user.email}</td> 
-                    <td><a  class="del" onClick={_=>{
+                    <td><a  class="del Pointer" onClick={_=>{
                         dispatch(DeleteProduct(user.uid))
+                        // dispatch(DeleteUser(user.uid))
                     }}>delete</a></td>   
                     </tr> )
              })
