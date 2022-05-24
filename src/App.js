@@ -13,6 +13,7 @@ import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import '../src/CssFiles/LoadingStyle.css'
 import UpdateProductt from './Pages/UpdateProduct/UpdateProduct';
+import AddPost from './Pages/AddPost/AddPost';
 
 function App() {
   return (
@@ -28,6 +29,7 @@ function App() {
      <Route path='/Dashboard' element={<Dashboard/>}/>
      <Route path='/ListProduct' element={<ListProduct/>}/>
      <Route path='/updateproducts/:Id' element={<UpdateProductt/>}/>
+     <Route path='/addpost' element={<AddPost/>}/>
    </Routes>
    </BrowserRouter>
   

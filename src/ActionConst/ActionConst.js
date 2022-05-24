@@ -7,3 +7,4 @@ export const ADD_PRODUCT="ADD_PRODUCT";
 export const GET_PRODUCT="GET_PRODUCT";
 export const UPDATE_PRODUCT="GET_PRODUCT";
 export const TOTAL_ORDER="TOTAL_ORDER";
+export const ADD_POST="ADD_POST"
