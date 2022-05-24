@@ -9,6 +9,7 @@ function AsideBar() {
         <Link class="shadow-none menu border-top-2" to="/Dashboard"  >Dashboard</Link>
         <Link class="shadow-none menu border-top-2"  to="/AddProduct"   >Add Product</Link>
         <Link class="shadow-none menu border-top-2" to="/ListProduct"   >List Products</Link>
+        <Link class="shadow-none menu border-top-2" to="/AddPost"   >Add a Post</Link>
       </div>
     </div>
   </div>

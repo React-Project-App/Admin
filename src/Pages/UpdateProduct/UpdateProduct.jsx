@@ -1,3 +1,4 @@
+import axios from 'axios';
 import { getDownloadURL, ref, uploadBytes, uploadBytesResumable } from 'firebase/storage';
 import React, { useEffect, useLayoutEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
@@ -22,9 +23,9 @@ function UpdateProductt() {
    const [curprice, setCurprice] = useState();
    const [description, setDescription] = useState();
    const [images, setImages] = useState([]);
-   const [LocalImages, setLocalImages] = useState([]);
+  //  const [LocalImages, setLocalImages] = useState([]);
    const [category, setCategory] = useState();
-   const [files, setFiles] = useState([]);
+  //  const [files, setFiles] = useState([]);
    const [featured, setFeatured] = useState(false);
 // const tab=[]
   const prod=useSelector(state=>state.ListProduct)
@@ -39,53 +40,25 @@ function UpdateProductt() {
    
    
    
-  const handelFiles = (e) => {
-    if (e.target.files.length > 4 || LocalImages.length > 3) {
-      toast.error("You can't add more than 4 images");
-      return;
-    }
-    for (let index = 0; index < e.target.files.length; index++) {
-      const render = new FileReader();
-      render.addEventListener("load", (ee) => {
-        let Image = ee.target;
-        setLocalImages((prev) => [...prev, Image.result]);
-      });
 
-      render.readAsDataURL(e.target.files[index]);
-      setFiles((prev) => [...prev, e.target.files[index]]);
-    }
-  };
   // console.log(LocalImages);
 
   const UpoloadImges = (file) =>  {
-    console.log(files);
+        
+    const  formData=new FormData();
+    formData.append("file",file.target.files[0]);
+     formData.append("upload_preset","duvnigx5");
+    
+     axios.post("https://api.cloudinary.com/v1_1/dizlyig0d/image/upload",formData).then((res)=>{
 
-        const fileref = ref(storage, "Products/", file.name);
 
-        const uploadTask = uploadBytesResumable(fileref, file);
-        uploadBytes(fileref, file).then((url) => {
+     setImages((prev)=>[...prev ,res.data.secure_url]);
+     toast.success("Image Uploaded");
+     })
 
-          console.log(url);
-          
-        }
-        )
 
-         uploadTask.on(
-          "state_changed",
-          (snapshot) => {},
-          (error) => {
-            toast.error("Error in uploading");
-          },
-              (res) => {
-               getDownloadURL(uploadTask.snapshot.ref).then((url) => {
-                //  tab.push(url)
-              setImages( [...images, url]);
-              // console.log(tab)
-                toast.success("Image Uploaded");
-              console.log(url);
-            });
-          }
-        );
+
+
   };
 
   const UpdateSingleProduct = () => {
@@ -110,6 +83,7 @@ function UpdateProductt() {
         Photo: images[0],
         MorePhoto: images,
         Featured:featured,
+        
       };
       console.log(product);
       dispatch(UpdateProduct(Id,product));
@@ -157,15 +131,14 @@ function UpdateProductt() {
           <div class="mb-3">
             <input class="form-control" type="file"  id="formFile"
             onChange={(e) => {
-              handelFiles(e);
-              UpoloadImges(e.target.files[0]);  
+              UpoloadImges(e);
           }}
             />
           </div>
           <div className='d-flex align-items-center '>
           
           {/* <img class=" upload me-3"  src={Photo} alt=""/> */}
-            {images&&images.map(picture=>{
+            {images.map(picture=>{
               return (
                 <img class=" upload me-3"  src={picture} alt=""/>
               )

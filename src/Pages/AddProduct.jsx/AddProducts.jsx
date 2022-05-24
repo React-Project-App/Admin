@@ -51,27 +51,6 @@ function AddProducts() {
 
 
 
-  const GetUrls = (uploadTask) => {
-
-      uploadTask.map(item=>{
-        item.on(
-          "state_changed",
-          (snapshot) => {},
-          (error) => {
-            toast.error("Error in uploading");
-          },
-             async (res) => {
-             await  getDownloadURL(item.snapshot.ref).then((url) => {
-              setImages((prev) => [...prev, url]);
-              // localStorage.setItem("Images", Images);
-                toast.success("Image Uploaded");
-              console.log(url);
-            });
-          }
-        );
-      })
- 
-  }
   const AddSingleProduct = () => {
     if (
       !Title ||
@@ -98,8 +77,10 @@ function AddProducts() {
         Featured,
       };
 
-      console.log(product);
+    
       dispatch(AddProduct(product));
+      toast.success("Product Uploaded");
+
     }
   };
 
