@@ -53,6 +53,7 @@ function UpdateProductt() {
 
 
      setImages((prev)=>[...prev ,res.data.secure_url]);
+     console.log(res.data.secure_url)
      toast.success("Image Uploaded");
      })
 
@@ -138,7 +139,7 @@ function UpdateProductt() {
           <div className='d-flex align-items-center '>
           
           {/* <img class=" upload me-3"  src={Photo} alt=""/> */}
-            {images.map(picture=>{
+             {  images && images.map(picture=>{
               return (
                 <img class=" upload me-3"  src={picture} alt=""/>
               )
