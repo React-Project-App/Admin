@@ -12,13 +12,10 @@
     height: 100vh;
 }
 .loader{
-        /* transform: perspective(140px) rotateX(-45deg); */
         width: 64px;
         height: 64px;
         position: relative;
         border: 2px solid #1363E2;
-        /* background-color: #1363E2; */
-        /* animation: load linear infinite alternate ; */
         border-radius: 50%;
 }
 .loader::after{
