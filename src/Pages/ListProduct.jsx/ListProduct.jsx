@@ -13,11 +13,11 @@ const products=useSelector(state=>state.ListProduct)
 
   return (
       products.length>0?(
-    <main class="container d-flex  flex-column p-2 w-100">
-    <h2 class=" ps-4 text-center fw-bold">List Products</h2>
-    <div class="  d-flex  flex-column  pt-3 w-100 container h-auto">
-      <table class="table "> 
-      <tbody class="listor text-center "> 
+    <main className="container d-flex  flex-column p-2 w-100">
+    <h2 className=" ps-4 text-center fw-bold">List Products</h2>
+    <div className="  d-flex  flex-column  pt-3 w-100 container h-auto">
+      <table className="table "> 
+      <tbody className="listor text-center "> 
           <tr> 
             <th>Image</th> 
             <th>Title</th>  
@@ -28,17 +28,17 @@ const products=useSelector(state=>state.ListProduct)
           </tr>     
           {
               (products.length>0)?
-              ( products.map(product=>{
+              ( products.map((product,key)=>{
                 
-                    return( <tr>  
-                        <td><img src={product.Photo} class="img-pro" alt={product.Title}/></td>  
+                    return( <tr key={key}>  
+                        <td><img src={product.Photo} className="img-pro" alt={product.Title}/></td>  
                         <td>{product.Title}</td>  
                         <td>{product.Price}</td> 
                         <td>{product.Categorie}</td>
-                        <td><a  class="del Pointer" onClick={_=>{
+                        <td><a  className="del Pointer" onClick={_=>{
                             dispatch(DeleteProduct(product.id))
                         }}>delete</a></td>
-                        <td><a  class="upd Pointer"
+                        <td><a  className="upd Pointer"
                         onClick={()=>{
                           navigate(`/updateproducts/${product.id}`)
                         }}
