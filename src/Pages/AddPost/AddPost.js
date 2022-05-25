@@ -11,14 +11,16 @@ import axios from "axios";
 import { toast } from "react-toastify";
 import { useDispatch } from "react-redux";
 import { AddSinglePost } from "../../Actions/Post";
+import { authAdmin } from "../../FireBaseLoginConfig/FirebaseLoginConfig";
 
 const AddPost = () => {
   const dispatch = useDispatch();
-  const [data, setData] = useState("");
+  
   const [title, setTitle] = useState("");
   const [Photo, setPhoto] = useState("");
-
-  const Show = data && title && Photo;
+  const [intro, setIntro] = useState("");
+  const [article, setArticle] = useState("");
+  const Show = intro && article && title && Photo;
 
   const uploadMinuature = (e) => {
     const formData = new FormData();
@@ -34,15 +36,17 @@ const AddPost = () => {
   };
   const addPost = () => {
     const post = {
-      Article: JSON.stringify(data),
-      Auteur: "Duy",
+      Article: article,
+      Introduction:intro,
+      Auteur: authAdmin.currentUser.displayName,
       Title: title,
       Photo,
       DatePost: new Date(Date.now()),
     };
 
     dispatch(AddSinglePost(post));
-    setData("");
+    setArticle("");
+    setIntro("");
     setTitle("");
     setPhoto("");
   };
@@ -75,15 +79,31 @@ const AddPost = () => {
           />
           {Photo && <img src={Photo} className="upload me-3 mt-3" alt="" />}
         </div>
-        <div className="col-md-12 col-sm-12">
-          <p className="fw-bold mt-3">Add the Blog Content</p>
+        <div className="col-md-10 col-sm-12">
+         <p className="fw-bold mt-3">Add Introduction</p>
 
-          <CKEditor
+          {/* <CKEditor
             initData={<p>Write your post here !!!!!!!!!</p>}
             onChange={(e) => setData(ReactHtmlParser(e.editor.getData()))}
+          /> */}
+          <textarea  className="form-control h-50"
+            onChange={(e) => setIntro(e.target.value)}
+            placeholder="Write Your intro..."
           />
-          <p className="text-muted mt-3">Post Preview</p>
-          <div>{data}</div>
+
+          <p className="fw-bold mt-3">Add article</p>
+       
+{/* <CKEditor
+  initData={<p>Write your post here !!!!!!!!!</p>}
+  onChange={(e) => setData(ReactHtmlParser(e.editor.getData()))}
+/> */}
+          <textarea  className="form-control h-75"
+            onChange={(e) => setArticle(e.target.value)}
+            placeholder="Write Your article..."
+          />
+        
+          {/* <p className="text-muted mt-3">Post Preview</p> */}
+          {/* <div>{data}</div> */}
 
           {Show && (
             <button
