@@ -18,13 +18,13 @@ function AddProducts() {
 
   const Categories = useSelector((state) => state.Categories);
 
-  const [Title, setTitle] = useState();
-  const [Prevprice, setPrevprice] = useState();
-  const [Curprice, setCurprice] = useState();
-  const [Description, setDescription] = useState();
+  const [Title, setTitle] = useState("");
+  const [Prevprice, setPrevprice] = useState(0);
+  const [Curprice, setCurprice] = useState(0);
+  const [Description, setDescription] = useState("");
   const [Images, setImages] = useState([]);
   const [LocalImages, setLocalImages] = useState([]);
-  const [Category, setCategory] = useState();
+  const [Category, setCategory] = useState("");
   const [files, setFiles] = useState([]);
   const [Featured, setFeatured] = useState(false);
   const [Task, setTask] = useState([]);
@@ -169,8 +169,8 @@ function AddProducts() {
               </button> */}
             </div>
 
-            {Images.map((image) => {
-              return <img src={image} className="upload me-3" alt="" />;
+            {Images.map((image,key) => {
+              return <img src={image} className="upload me-3" alt="" key={key} />;
 
             })}
           </div>
@@ -187,18 +187,18 @@ function AddProducts() {
             >
               <option value="Choose...">Choose...</option>
 
-              {Categories.map(({CatName}) => {
+              {Categories.map(({CatName},key) => {
                 return (
-                  <option value={CatName} >
+                  <option value={CatName}  key={key}>
                     {CatName}
                   </option>
                 );
               })}
             </select>
-            <div class="form-check form-switch d-flex gap-5  col-lg-5 col-sm-6 p-0">
+            <div className="form-check form-switch d-flex gap-5  col-lg-5 col-sm-6 p-0">
             <p  className="fw-bold ">Featured</p>
 
-          <input class="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckChecked"   onChange={(e)=>setFeatured(e.target.checked)} />
+          <input className="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckChecked"   onChange={(e)=>setFeatured(e.target.checked)} />
         </div>
           </div>
           {/* <div className="col-lg-10 col-sm-12 p-3 mb-2 ps-2">
