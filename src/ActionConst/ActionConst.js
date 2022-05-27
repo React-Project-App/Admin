@@ -11,4 +11,4 @@ export const ADD_POST="ADD_POST"
 export const LOGIN_ADMIN="LOGIN_ADMIN"
 export const LOGEDINADMIN="LOGEDINADMIN"
 export const SIGNOUTADMIN="SIGNOUTADMIN"
-
+export const ADD_MEMBER="ADD_MEMBER"

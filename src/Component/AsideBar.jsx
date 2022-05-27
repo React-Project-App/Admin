@@ -10,6 +10,7 @@ function AsideBar() {
         <Link className="shadow-none menu border-top-2"  to="/AddProduct"   >Add Product</Link>
         <Link className="shadow-none menu border-top-2" to="/ListProduct"   >List Products</Link>
         <Link className="shadow-none menu border-top-2" to="/AddPost"   >Add a Post</Link>
+        <Link className="shadow-none menu border-top-2" to="/AddMember"   >Add a Member</Link>
       </div>
     </div>
   </div>
