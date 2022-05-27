@@ -75,6 +75,17 @@ function AddProducts() {
         Photo: Images[0],
         MorePhoto: Images,
         Featured,
+        Rating:{
+          OneStar:1,
+          TwoStar:1,
+          ThreeStar:1,
+          FourStar:1,
+          FivaStar:1
+        },
+        UserRate:[
+          "ForTesting"
+        ],
+        Reviews:1
       };
 
     
