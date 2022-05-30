@@ -20,7 +20,7 @@ export const UpdateProduct=(id,product)=>async(dispatch)=>{
     const productRef=doc(db, "Product", id)
     await setDoc(productRef,product);
     console.log("ddj",product)
-    dispatch({type:UPDATE_PRODUCT});
+    dispatch({type:UPDATE_PRODUCT,payload:product});
     toast.success('Update succed')
     } catch (error) {
         console.log(error)

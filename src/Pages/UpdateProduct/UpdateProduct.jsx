@@ -13,9 +13,19 @@ import AddProduct from '../../Reducers/AddProduct';
 function UpdateProductt() {
   const {Id}=useParams();
   const dispatch=useDispatch()
+  const uuuid=Id
   useLayoutEffect(_=>{
-    dispatch(GetProduct(Id))
+    dispatch(GetProduct(uuuid))
     dispatch(GetCategories())
+    
+    // const func=()=>{
+    
+      // if (Featured) {
+        
+      // }
+      // }
+      // func();
+  
   },[])
   // const [counter,setcounter]=useState(0)
   const [title, setTitle] = useState("");
@@ -30,14 +40,17 @@ function UpdateProductt() {
 // const tab=[]
   const prod=useSelector(state=>state.ListProduct)
   const categories=useSelector(state=>state.Categories)
-   const {Title,Description,Curprice,Prevprice ,Photo,Category ,MorePhoto,Featured}=prod
-  // useEffect(()=>{
-  //   if(prod){
-      
-  //    }
-  // },[prod])
+   const {Title,Description,Curprice,Prevprice ,Photo,Category ,Featured}=prod
+   let {MorePhoto}=prod;
    
+  useEffect(()=>{
+    if(prod){
+    setTitle(Title);setCurprice(Curprice);setPrevprice(Prevprice);setDescription(Description);
+    setCategory(Category);setFeatured(Featured);setImages(MorePhoto);
+     }
+  },[prod])
    
+
    
 
   // console.log(LocalImages);
@@ -52,7 +65,7 @@ function UpdateProductt() {
 
 
      setImages((prev)=>[...prev ,res.data.secure_url]);
-     console.log(res.data.secure_url)
+    //  console.log(res.data.secure_url)
      toast.success("Image Uploaded");
      })
 
@@ -89,10 +102,17 @@ function UpdateProductt() {
       dispatch(UpdateProduct(Id,product));
     }
   };
-  if (prod.length>0) {
-    setTitle(Title);setCurprice(Curprice);setPrevprice(Prevprice);setDescription(Description);
-        setCategory(Category);setImages(MorePhoto);setFeatured(Featured)
-  }
+  // if (prod.length>0) {
+  //   // const func=()=>{
+  //   setTitle(Title);setCurprice(Curprice);setPrevprice(Prevprice);setDescription(Description);
+  //       setCategory(Category);setFeatured(Featured);
+  //     // if (Featured) {
+        
+  //     // }
+  //     // }
+  //     // func();
+  // }
+  // // console.log(Featured)
   return (Title)?(
       
     <main className="container">
@@ -104,28 +124,28 @@ function UpdateProductt() {
         <div className="col-lg-10 col-sm-12 mb-3">
           <label htmlFor="exampleFormControlInput1" className="form-label">Product title</label>
           <input type="text" className="form-control" id="exampleFormControlInput1" placeholder="title" required="required" 
-            value={Title}
+            defaultValue={Title}
           onChange={(e) => setTitle(e.target.value)}
           />
         </div>
         <div className="col-lg-5 col-sm-6 mb-3">
           <label htmlFor="exampleFormControlInput1" className="form-label">Previous price</label>
           <input type="number" min="0" className="form-control" id="exampleFormControlInput1" placeholder="Dhs" required="required" 
-          value={Prevprice}
+          defaultValue={Prevprice}
           onChange={(e) => setPrevprice(e.target.value)}
           />
         </div>
         <div className="col-lg-5 col-sm-6 mb-3 ">
           <label htmlFor="exampleFormControlInput1" className="form-label col ">Current price</label>
           <input type="number" min="0" className="form-control" id="exampleFormControlInput1" placeholder="Dhs" required="required" 
-          value={Curprice}
+          defaultValue={Curprice}
           onChange={(e) => setCurprice(e.target.value)}
           />
         </div>
         <div className="mb-3 col-lg-10 col-sm-12">
           <label htmlFor="exampleFormControlTextarea1" className="form-label">Description</label>
           <textarea className="form-control" id="exampleFormControlTextarea1" rows="3" placeholder="Type here" required="required" 
-          value={Description}
+          defaultValue={Description}
           onChange={(e) => setDescription(e.target.value)}
           />
         </div>
@@ -141,15 +161,27 @@ function UpdateProductt() {
           <div className='d-flex align-items-center '>
           
           {/* <img className=" upload me-3"  src={Photo} alt=""/> */}
-             {  images && images.map((picture,key)=>{
+
+             
+               
+               {
+              images&& images.map((picture,key)=>{
+               
               return (
-                <img className=" upload me-3"  src={picture} alt="" key={key}/>
+                <img className=" upload me-3"  src={picture}  key={key}/>
               )
+              
             })
+            // :MorePhoto && MorePhoto.map((picture,key)=>{
+            //   return (
+            //     <img className=" upload me-3"  src={picture}  key={key}/>
+            //   )})
+
             }
+            
             <button type='button'
           className="btn btn-primary  adp shadow-none w-25 me-3"
-          onClick={()=>setImages([])}
+          onClick={()=>{setImages([]);}}
           >Clear</button>
           </div>
          
