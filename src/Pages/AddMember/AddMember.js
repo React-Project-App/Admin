@@ -14,7 +14,7 @@ const AddMember = () => {
     const [Instagram, setInstagram] = useState('')
     const [Linkden, setLinkedin] = useState('')
     const [Github, setGithub] = useState('')
-    const Show=Function && FullName && Photo && Sentence && Facebook && Instagram && Linkedin && Github
+    const Show=Function && FullName && Photo && Sentence && Facebook && Instagram && Linkden && Github
      
     const dispatch =useDispatch();
    const AddMember = () => {
