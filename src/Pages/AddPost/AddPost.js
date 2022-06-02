@@ -1,12 +1,7 @@
 import React, { useState } from "react";
 // import {CKEditor} from "@ckeditor/ckeditor5-react";
 // import classNameicEditor from "@ckeditor/ckeditor5-build-classNameic";
-import { CKEditor } from "ckeditor4-react";
-import ReactHtmlParser, {
-  convertNodeToElement,
-  htmlparser2,
-  processNodes,
-} from "react-html-parser";
+
 import axios from "axios";
 import { toast } from "react-toastify";
 import { useDispatch } from "react-redux";
