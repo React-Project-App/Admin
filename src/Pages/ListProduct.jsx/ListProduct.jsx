@@ -33,8 +33,8 @@ const products=useSelector(state=>state.ListProduct)
                     return( <tr key={key}>  
                         <td><img src={product.Photo} className="img-pro" alt={product.Title}/></td>  
                         <td>{product.Title}</td>  
-                        <td>{product.Price}</td> 
-                        <td>{product.Categorie}</td>
+                        <td>{product.Curprice}</td> 
+                        <td>{product.Category}</td>
                         <td><a  className="del Pointer" onClick={_=>{
                             dispatch(DeleteProduct(product.id))
                         }}>delete</a></td>

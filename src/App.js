@@ -15,6 +15,8 @@ import '../src/CssFiles/LoadingStyle.css'
 import UpdateProductt from './Pages/UpdateProduct/UpdateProduct';
 import AddPost from './Pages/AddPost/AddPost';
 import AddMember from './Pages/AddMember/AddMember';
+import Messages from './Pages/Messages/Messages';
+import MessageContent from './Pages/MessageContent/MessageContent';
 
 function App() {
   return (
@@ -32,6 +34,9 @@ function App() {
      <Route path='/updateproducts/:Id' element={<UpdateProductt/>}/>
      <Route path='/addpost' element={<AddPost/>}/>
      <Route path='/AddMember' element={<AddMember/>}/>
+     <Route path='/Messages' element={<Messages/>}/>
+     <Route path='/Answer/:Id' element={<MessageContent/>}/>
+
    </Routes>
    </BrowserRouter>
   
