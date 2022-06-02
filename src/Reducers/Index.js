@@ -6,5 +6,6 @@ import Categories from './Categories'
 import Orders from './Orders'
 import Post from "./Post"
 import LoginAdmin from "./LoginAdmin";
+import Messages from "./Messages";
 
-export const   Red = combineReducers({ListProduct,ListUsers,Categories,Orders,Post,LoginAdmin});
+export const   Red = combineReducers({ListProduct,ListUsers,Categories,Orders,Post,LoginAdmin,Messages});

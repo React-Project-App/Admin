@@ -13,7 +13,6 @@ export const AddSingleMember = (Member) =>async(dispatch)=> {
     
         dispatch({type:ADD_MEMBER})
         toast.success("Member has been added")
-    
         
     }
     catch(e) {
