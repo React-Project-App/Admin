@@ -7,6 +7,7 @@ function AsideBar() {
     <div className="offcanvas-body sidr p-0">
       <div className="  bg-white">
         <Link className="shadow-none menu border-top-2" to="/Dashboard"  >Dashboard</Link>
+        <Link className="shadow-none menu border-top-2" to="/ListUsers"  >List Users</Link>
         <Link className="shadow-none menu border-top-2"  to="/AddProduct"   >Add Product</Link>
         <Link className="shadow-none menu border-top-2" to="/ListProduct"   >List Products</Link>
         <Link className="shadow-none menu border-top-2" to="/AddPost"   >Add a Post</Link>

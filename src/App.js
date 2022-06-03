@@ -17,6 +17,8 @@ import AddPost from './Pages/AddPost/AddPost';
 import AddMember from './Pages/AddMember/AddMember';
 import Messages from './Pages/Messages/Messages';
 import MessageContent from './Pages/MessageContent/MessageContent';
+import Users from './Pages/Users/Users';
+import Order from './Pages/Order/Order';
 
 function App() {
   return (
@@ -36,6 +38,8 @@ function App() {
      <Route path='/AddMember' element={<AddMember/>}/>
      <Route path='/Messages' element={<Messages/>}/>
      <Route path='/Answer/:Id' element={<MessageContent/>}/>
+     <Route path='/ListUsers' element={<Users/>}/>
+     <Route path='/Order/:Id' element={<Order/>}/>
 
    </Routes>
    </BrowserRouter>
