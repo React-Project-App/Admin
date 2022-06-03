@@ -4,6 +4,7 @@ import { GetAllProduct } from '../../Actions/ListProduct'
 import { DeleteProduct, DeleteUser, GetAllUsers } from '../../Actions/ListUsers'
 import {FaUserAlt} from 'react-icons/fa'
 import { GetOrders } from '../../Actions/TotalOrder'
+import { Link } from 'react-router-dom'
 function Dashboard() {
     const dispatch=useDispatch()
     // dispatch(GetAllProduct())
@@ -15,10 +16,15 @@ function Dashboard() {
     const products=useSelector(state=>state.ListProduct)
     const Orders=useSelector(state=>state.Orders)
     const Users=useSelector(state=>state.ListUsers)
-    // console.log()
+    const {createdAt}=Orders;
+    let dateCheckOut = new Date();
+  if(createdAt){
+    dateCheckOut.setTime(createdAt.seconds * 1000);}
+
     
   return (
     Users.length>0?(
+      
     <main className="container d-flex  flex-column p-2 w-100">
     <div className="allds row w-100 d-flex justify-content-around pt-5 ms-1">
       <div className="dsh col-lg-3 col-md-3 col-sm-7 me-lg-5 me-md-5 row">
@@ -60,21 +66,26 @@ function Dashboard() {
       <tbody className="listor text-center"> 
           <tr> 
             <th>ID</th> 
-            <th>Username</th>  
-            <th>Email</th>   
-            <th>delete</th>   
+            <th>Email</th>  
+            <th>UsreName</th>   
+            <th>Date</th>   
           </tr>              
-         {(Users.length>0)&&(
-             Users.map((user,key)=>{
+         {(Orders.length>0)&&(
+             Orders.map((order,key)=>{
                 return( 
                     <tr key={key}>  
-                    <td>{user.uid}</td>  
-                    <td>{user.name}</td>  
-                    <td>{user.email}</td> 
-                    <td><a  className="del Pointer" onClick={_=>{
-                        dispatch(DeleteProduct(user.uid))
-                        // dispatch(DeleteUser(user.uid))
-                    }}>delete</a></td>   
+                    <td>{order.orderId}</td>  
+                    <td>{order.email}</td>  
+                    <td>{order.name}</td> 
+                    <td>{dateCheckOut.toDateString()}</td>
+                    <td><Link  to={`/Order/${order.id}`}
+                    className='btn btn-success'
+                    >
+                      View Order
+                      </Link>
+                      </td> 
+
+                    
                     </tr> )
              })
             
@@ -86,7 +97,11 @@ function Dashboard() {
       </tbody>    
       </table>
     </div>
-  </main>):(
+  </main>
+  
+  )
+  
+  :(
        <div className='d-flex justify-content-center align-items-center load'>
        <div className='loader'></div>
            </div>
