@@ -1,5 +1,5 @@
 import React from 'react'
-import { BrowserRouter, Route, Routes } from 'react-router-dom';
+import { BrowserRouter, Navigate, Route, Routes } from 'react-router-dom';
 import Login from './Pages/Login/Login';
 import './CssFiles/Style.css'
 import 'bootstrap/dist/css/bootstrap.min.css'
@@ -19,8 +19,11 @@ import Messages from './Pages/Messages/Messages';
 import MessageContent from './Pages/MessageContent/MessageContent';
 import Users from './Pages/Users/Users';
 import Order from './Pages/Order/Order';
+import { useSelector } from 'react-redux';
 
 function App() {
+  const user=useSelector(state=>state.LoginAdmin)
+
   return (
     
    
@@ -29,17 +32,19 @@ function App() {
    <NavBar/>
     <AsideBar/>
    <Routes>
-     <Route path='/' element={<Login/>}/>
-     <Route path='/AddProduct' element={<AddProducts/>}/>
-     <Route path='/Dashboard' element={<Dashboard/>}/>
-     <Route path='/ListProduct' element={<ListProduct/>}/>
-     <Route path='/updateproducts/:Id' element={<UpdateProductt/>}/>
-     <Route path='/addpost' element={<AddPost/>}/>
-     <Route path='/AddMember' element={<AddMember/>}/>
-     <Route path='/Messages' element={<Messages/>}/>
-     <Route path='/Answer/:Id' element={<MessageContent/>}/>
-     <Route path='/ListUsers' element={<Users/>}/>
-     <Route path='/Order/:Id' element={<Order/>}/>
+     <Route path='/login'   element={<Login/>}/>
+     <Route path='*'   element={<Navigate to={"Login"}/>}/>
+     <Route path='/'   element={<Login/>}/>
+     <Route path='/AddProduct' element={ user!==null &&<AddProducts/>}/>
+     <Route path='/Dashboard' element={user!==null &&<Dashboard/>}/>
+     <Route path='/ListProduct' element={user!==null &&<ListProduct/>}/>
+     <Route path='/updateproducts/:Id' element={user!==null &&<UpdateProductt/>}/>
+     <Route path='/addpost' element={user!==null &&<AddPost/> }/>
+     <Route path='/AddMember' element={user!==null &&<AddMember/>}/>
+     <Route path='/Messages' element={user!==null &&<Messages/>}/>
+     <Route path='/Answer/:Id' element={user!==null &&<MessageContent/>}/>
+     <Route path='/ListUsers' element={user!==null &&<Users/>}/>
+     <Route path='/Order/:Id' element={user!==null &&<Order/>}/>
 
    </Routes>
    </BrowserRouter>
