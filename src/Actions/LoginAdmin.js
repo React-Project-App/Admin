@@ -14,6 +14,7 @@ export const LoginAdmin=( email, password)=>async (dispatch)=>{
     dispatch({type:LOGIN_ADMIN})
     // updateProfile(user,{displayName:"Walid Drif"})
     toast.success("Welcome "+user.displayName)
+    localStorage.setItem("user",user.displayName)
     setTimeout(()=>{
     window.location.pathname="/Dashboard"
     },3000)
@@ -34,6 +35,7 @@ export const SignOutAdmin=()=>async (dispatch)=>{
     signOut(authAdmin).then(() => {
             dispatch({type:SIGNOUTADMIN})
             toast.success("Goodby")
+            localStorage.clear()
             setTimeout(()=>{
               window.location.pathname="/"
               },3000)

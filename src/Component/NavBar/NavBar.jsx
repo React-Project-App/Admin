@@ -21,7 +21,7 @@ function NavBar() {
           <span className="span">Admin</span>
           <span className="span">K</span>OULCHI<span className="span">.</span>
         </a>
-        {user&&(
+        {user!==null &&(
           <a
           className="  bg-transparent border-0 shadow-none"
           data-bs-toggle="offcanvas"
@@ -47,7 +47,7 @@ function NavBar() {
         
 
         <div className="pucadm pe-3  ps-4 ms-auto">
-          {user&&(
+          {user!==null &&  !Array.isArray( user) &&(
             <a
             className="  bg-transparent border-0 shadow-none logOut text-decoration-none Pointer"
             onClick={SignOut}
