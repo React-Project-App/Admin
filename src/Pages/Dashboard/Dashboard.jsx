@@ -60,7 +60,7 @@ function Dashboard() {
         </div>
       </div>
     </div>
-    <h3 className=" ps-4">List Users</h3>
+    <h3 className=" ps-4 fw-bold">List Orders</h3>
     <div className="  d-flex  flex-column  pt-3 w-100 container h-auto">
       <table className="table "> 
       <tbody className="listor text-center"> 
@@ -69,6 +69,7 @@ function Dashboard() {
             <th>Email</th>  
             <th>UsreName</th>   
             <th>Date</th>   
+            <th>View</th>   
           </tr>              
          {(Orders.length>0)&&(
              Orders.map((order,key)=>{
@@ -78,9 +79,9 @@ function Dashboard() {
                     <td>{order.email}</td>  
                     <td>{order.name}</td> 
                     <td>{dateCheckOut.toDateString()}</td>
-                    <td><Link  to={`/Order/${order.id}`}
-                    className='btn btn-success'
-                    >
+                    <td>
+                      <Link  to={`/Order/${order.id}`}
+                    className='btn btn-success py-3 fw-bold'>
                       View Order
                       </Link>
                       </td> 

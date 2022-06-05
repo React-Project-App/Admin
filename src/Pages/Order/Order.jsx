@@ -17,32 +17,14 @@ function Order() {
         let t=[];
          t=Orders.filter(order=>order.id===Id);
          cart=t[0].cart;
-        //  console.log(cart);
     }
-    // console.log(cart);
     return (cart.length>0)&&(
       cart.map(e=>{
      
       return ( <OrderCompo cart={e}/>)
       })
      )
-//   if(cart.length>0)
-//     {
-//       cart.map(e=>{ return <OrderCompo/>})
-          
-         
-      
-//     }
-//     else{
-//       return(
-// <div className='d-flex justify-content-center align-items-center load'>
-//        <div className='loader'></div>
-//            </div>
-//       )
-//     }
-    // :(
-    
-  // )
+
 }
 
 export default Order
