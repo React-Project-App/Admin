@@ -82,7 +82,7 @@ function AddProducts() {
           FourStar:1,
           FivaStar:1
         },
-        UserRate:[
+        Usersrate:[
           "ForTesting"
         ],
         Reviews:1
