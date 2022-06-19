@@ -16,10 +16,8 @@ function Dashboard() {
     const products=useSelector(state=>state.ListProduct)
     const Orders=useSelector(state=>state.Orders)
     const Users=useSelector(state=>state.ListUsers)
-    const {createdAt}=Orders;
     let dateCheckOut = new Date();
-  if(createdAt){
-    dateCheckOut.setTime(createdAt.seconds * 1000);}
+
 
     
   return (
@@ -72,13 +70,14 @@ function Dashboard() {
             <th>View</th>   
           </tr>              
          {(Orders.length>0)&&(
+          
              Orders.map((order,key)=>{
                 return( 
                     <tr key={key}>  
                     <td>{order.orderId}</td>  
                     <td>{order.email}</td>  
                     <td>{order.name}</td> 
-                    <td>{dateCheckOut.toDateString()}</td>
+                    <td>{(new Date( dateCheckOut.setTime(order.createdAt.seconds * 1000))).toDateString()}</td>
                     <td>
                       <Link  to={`/Order/${order.id}`}
                     className='btn btn-success py-3 fw-bold'>
